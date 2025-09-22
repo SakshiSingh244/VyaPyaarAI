@@ -20,12 +20,12 @@ def scrape_meesho_prices(product_name):
         driver.get("https://www.meesho.com/")
         wait = WebDriverWait(driver, 15)
 
-        # Wait for the search input box and enter the product name
+
         search_input = wait.until(EC.presence_of_element_located((By.TAG_NAME, "input")))
         search_input.send_keys(product_name)
         search_input.send_keys(Keys.ENTER)
 
-        # Wait a bit to ensure results load
+   
         time.sleep(5)
 
         prices = []
@@ -40,7 +40,7 @@ def scrape_meesho_prices(product_name):
                     if amount.isdigit():
                         prices.append(int(amount))
             except StaleElementReferenceException:
-                # Re-fetch element if stale
+             
                 el = driver.find_elements(By.TAG_NAME, "h5")[i]
                 text = el.text.strip()
                 if "₹" in text:
