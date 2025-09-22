@@ -7,11 +7,10 @@ const User = require('./userModel');
 
 const app = express();
 
-// Middleware (before routes)
+
 app.use(cors({ origin: '*' }));
 app.use(express.json());
 
-// Connect to MongoDB
 mongoose.connect("mongodb+srv://sakshx:test1234@vyapyaar-cluster.k3c5gvz.mongodb.net/vyapyaarDB?retryWrites=true&w=majority")
   .then(() => console.log('✅ Connected to MongoDB!'))
   .catch(err => {
@@ -19,7 +18,7 @@ mongoose.connect("mongodb+srv://sakshx:test1234@vyapyaar-cluster.k3c5gvz.mongodb
     process.exit(1);
   });
 
-// Routes
+
 
 app.get('/', (req, res) => {
   res.send('VyapyaarAI backend is running');
