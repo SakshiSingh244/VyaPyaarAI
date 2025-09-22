@@ -7,8 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { Heart, Sparkles } from "lucide-react";
 
-const API_BASE_URL = "http://localhost:5000/api"; // Change if your backend is hosted elsewhere
-
+const API_BASE_URL = "http://localhost:5000/api"; 
 const signUp = async (userData: { username: string; password: string; email?: string }) => {
   try {
     const response = await fetch(`${API_BASE_URL}/signup`, {
@@ -18,7 +17,7 @@ const signUp = async (userData: { username: string; password: string; email?: st
     });
 
     const data = await response.json();
-    return data; // expected: { success: boolean, message: string, user?: {...} }
+    return data; 
   } catch (error) {
     return { success: false, message: "Network error" };
   }
@@ -33,7 +32,7 @@ const login = async (username: string, password: string) => {
     });
 
     const data = await response.json();
-    return data; // expected: { success: boolean, message: string, user?: {...} }
+    return data;
   } catch (error) {
     return { success: false, message: "Network error" };
   }
