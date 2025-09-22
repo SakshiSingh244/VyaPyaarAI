@@ -1,6 +1,6 @@
 import { GoogleGenerativeAI, HarmCategory, HarmBlockThreshold } from "@google/generative-ai";
 
-// Validate API key
+
 const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 if (!apiKey) {
   throw new Error("Google API key is not configured. Please set VITE_GOOGLE_API_KEY in your environment variables.");
