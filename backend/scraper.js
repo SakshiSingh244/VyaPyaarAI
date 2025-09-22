@@ -3,11 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 async function scrape_meesho_prices(productName) {
-    const userDataDir = path.join(__dirname, 'user-data'); // Browser profile folder
+    const userDataDir = path.join(__dirname, 'user-data'); 
 
     const browser = await chromium.launchPersistentContext(userDataDir, {
         headless: false,
-        slowMo: 200, // Mimic human speed
+        slowMo: 200, 
         args: [
             '--start-maximized',
             '--disable-blink-features=AutomationControlled',
@@ -25,7 +25,7 @@ async function scrape_meesho_prices(productName) {
         });
         console.log('✅ Search page loaded');
 
-        // Optional: Wait for product grid to appear
+        
         try {
             await page.waitForSelector('div[class*="ProductList"]', { timeout: 10000 });
             console.log("📦 Product list detected.");
@@ -33,7 +33,7 @@ async function scrape_meesho_prices(productName) {
             console.warn("⚠️ Product list not detected. Continuing anyway.");
         }
 
-        // 💰 Extract prices
+       
         console.log('💰 Extracting prices...');
         const prices = await page.$$eval('div, span', elements =>
             elements.map(el => {
