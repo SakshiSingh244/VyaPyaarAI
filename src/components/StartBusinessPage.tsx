@@ -12,7 +12,7 @@ interface Message {
   suggestions?: string[];
 }
 
-// Gemini AI configuration
+
 const SYSTEM_PROMPT = `
 Role:
 You are VyaPyaarAI — India’s trusted digital business mentor with 10+ years of experience helping first‑time entrepreneurs start profitable e‑commerce businesses via Meesho with minimal investment.
@@ -97,10 +97,9 @@ export function StartBusinessPage() {
 
   const initializeChat = async () => {
     try {
-      // Initialize Gemini AI (make sure to install @google/generative-ai)
+    
       const { GoogleGenerativeAI } = await import('@google/generative-ai');
       
-      // Get API key from environment variables
       const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
       if (!apiKey) {
         throw new Error("Google API key not found in environment variables");
@@ -109,7 +108,7 @@ export function StartBusinessPage() {
       const genAI = new GoogleGenerativeAI(apiKey);
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
       
-      // Start chat session
+   
       chatSessionRef.current = model.startChat({
         history: [
           {
@@ -123,7 +122,7 @@ export function StartBusinessPage() {
         ],
       });
 
-      // Add greeting message
+     
       addBotMessage(GREETING);
     } catch (error) {
       console.error("Error initializing chat:", error);
@@ -144,7 +143,7 @@ export function StartBusinessPage() {
   const handleSend = async (message: string = inputValue) => {
     if (!message.trim()) return;
 
-    // Add user message
+  
     const userMessage: Message = {
       id: Date.now().toString(),
       type: 'user',
@@ -153,7 +152,7 @@ export function StartBusinessPage() {
     setMessages(prev => [...prev, userMessage]);
     setInputValue("");
 
-    // Simulate bot typing
+
     setIsTyping(true);
     
     try {
@@ -166,7 +165,7 @@ export function StartBusinessPage() {
       const response = await result.response;
       const text = response.text();
 
-      // Add bot response
+      
       addBotMessage(text);
     } catch (error) {
       console.error("Error getting response from AI:", error);
@@ -242,7 +241,6 @@ export function StartBusinessPage() {
                   </CardContent>
                 </Card>
                 
-                {/* Suggestions - You can remove this if not needed with AI responses */}
                 {message.suggestions && (
                   <div className="flex flex-wrap gap-2 mt-3">
                     {message.suggestions.map((suggestion, index) => (
@@ -268,7 +266,7 @@ export function StartBusinessPage() {
             </div>
           ))}
           
-          {/* Typing indicator */}
+         
           {isTyping && (
             <div className="flex gap-3 justify-start">
               <div className="bg-gradient-primary p-2 rounded-full h-10 w-10 flex items-center justify-center">
